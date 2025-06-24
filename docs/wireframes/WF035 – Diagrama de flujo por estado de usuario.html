@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Codificación y adaptabilidad del documento -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Título de la pestaña del navegador -->
+  <title>WF035 – Diagrama de flujo por estado de usuario</title>
+
+  <!-- Inclusión del framework Bootstrap v5.3.3 desde CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos específicos del diagrama de flujo visual -->
+  <style>
+    /* Contenedor principal centrado con ancho máximo */
+    .flujo-container {
+      max-width: 1100px;
+      margin: 5vh auto;
+      padding: 2rem;
+    }
+
+    /* Caja base para cada paso o nodo del flujo */
+    .box {
+      border: 2px solid #0d6efd; /* Borde azul */
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+      background-color: #e7f1ff; /* Azul claro de fondo */
+    }
+
+    /* Caja para rutas de rechazo (alertas o errores) */
+    .box-danger {
+      background-color: #f8d7da;
+      border-color: #dc3545; /* Rojo de error */
+    }
+
+    /* Caja para rutas de éxito (login válido) */
+    .box-success {
+      background-color: #d1e7dd;
+      border-color: #198754; /* Verde de validación */
+    }
+
+    /* Estilo de flechas entre nodos del flujo */
+    .arrow {
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    /* Título principal del wireframe */
+    .wf-title {
+      font-weight: bold;
+      color: #000;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    /* Adaptación responsiva del texto en móviles */
+    @media (max-width: 768px) {
+      .box {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Contenedor general del flujo -->
+  <div class="flujo-container">
+
+    <!-- Título visible en la interfaz con formato estandarizado -->
+    <h4 class="wf-title">WF035 – Diagrama de flujo visual completo con bifurcación por estado de usuario</h4>
+
+    <!-- Nodo inicial: acción del usuario -->
+    <div class="box">Inicio: Usuario solicita login</div>
+    <div class="arrow">↓</div>
+
+    <!-- Primera validación: existencia del usuario -->
+    <div class="box">¿El usuario existe?</div>
+    <div class="arrow">↓</div>
+
+    <!-- Evaluación crítica: estado del usuario (activo o no) -->
+    <div class="box">¿Cuál es el estado del usuario?</div>
+    <div class="arrow">↓</div>
+
+    <!-- Bifurcación del flujo según el estado -->
+    <div class="row text-center">
+      
+      <!-- Ruta 1: Usuario Activo → Validación de credenciales -->
+      <div class="col-md-3">
+        <div class="box box-success">Activo</div>
+        <div class="arrow">↓</div>
+        <div class="box box-success">
+          Validar credenciales<br>
+          <small>(Si son correctas → acceso)</small>
+        </div>
+      </div>
+
+      <!-- Ruta 2: Usuario Inactivo → Bloqueo con alerta y log -->
+      <div class="col-md-3">
+        <div class="box box-danger">Inactivo</div>
+        <div class="arrow">↓</div>
+        <div class="box box-danger">
+          Rechazo<br>
+          <small>Mostrar alerta (WF033)<br>Registrar en bitácora (WF034)</small>
+        </div>
+      </div>
+
+      <!-- Ruta 3: Usuario Suspendido → Mismo manejo que Inactivo -->
+      <div class="col-md-3">
+        <div class="box box-danger">Suspendido</div>
+        <div class="arrow">↓</div>
+        <div class="box box-danger">
+          Rechazo<br>
+          <small>Mostrar alerta (WF033)<br>Registrar en bitácora (WF034)</small>
+        </div>
+      </div>
+
+      <!-- Ruta 4: Usuario Eliminado → Bloqueo definitivo -->
+      <div class="col-md-3">
+        <div class="box box-danger">Eliminado</div>
+        <div class="arrow">↓</div>
+        <div class="box box-danger">
+          Rechazo permanente<br>
+          <small>Mostrar alerta genérica<br>Registrar intento fallido</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pie de página técnico obligatorio -->
+  <footer class="mt-5 text-center text-muted small">
+    WF035 – Diagrama de flujo por estado de usuario | Sistema ConstruserviciosMD – 2025
+  </footer>
+
+  <!-- Bootstrap JS para componentes interactivos si se agregan en el futuro -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
