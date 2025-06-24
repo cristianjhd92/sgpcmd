@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración básica del documento HTML -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WF022 – Error por rol sin módulo funcional</title>
+
+  <!-- Inclusión de estilos de Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos personalizados mínimos para wireframe -->
+  <style>
+    .form-card {
+      max-width: 900px;
+      margin: 4vh auto;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+    }
+    .badge-modulo {
+      font-size: 0.9rem;
+      margin: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Contenedor principal del wireframe -->
+  <div class="card form-card p-4">
+    <h5 class="text-center mb-4">WF022 – Error por rol sin módulo funcional</h5>
+
+    <!-- Selector de rol de usuario -->
+    <div class="mb-3">
+      <label for="rolUsuario" class="form-label">
+        Rol del sistema <span class="text-danger">*</span>
+      </label>
+      <select class="form-select" id="rolUsuario" onchange="asociarModulos()">
+        <option value="">Seleccione un rol</option>
+        <option value="calidad">Responsable de Calidad</option>
+        <option value="sinModulo">Rol sin módulos configurados</option>
+      </select>
+    </div>
+
+    <!-- Área visual de módulos asociados o mensaje de error -->
+    <div id="modulosAsociados">
+      <div class="text-muted">Seleccione un rol para visualizar sus módulos funcionales.</div>
+    </div>
+
+    <!-- Botón de registro del usuario -->
+    <div class="d-grid mt-4">
+      <button id="btnRegistrar" type="button" class="btn btn-primary" disabled>Registrar usuario</button>
+    </div>
+  </div>
+
+  <!-- Pie de página del wireframe -->
+  <footer class="mt-5 text-center text-muted">
+    WF022 – Rol sin módulo funcional | Sistema ConstruserviciosMD – 2025
+  </footer>
+
+  <!-- Script de Bootstrap + lógica de validación de módulos -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Mapeo simulado de roles y sus módulos
+    const mapaRoles = {
+      calidad: ["Módulo de Calidad", "Gestión de Incidentes"],
+      sinModulo: [] // Simulación de rol sin módulos
+    };
+
+    // Función para asociar módulos según el rol seleccionado
+    function asociarModulos() {
+      const rol = document.getElementById("rolUsuario").value;
+      const contenedor = document.getElementById("modulosAsociados");
+      const boton = document.getElementById("btnRegistrar");
+
+      // Limpiar contenido anterior
+      contenedor.innerHTML = "";
+
+      // Validar si el rol existe en el mapa
+      if (mapaRoles[rol] && mapaRoles[rol].length > 0) {
+        // Mostrar los módulos asociados como badges
+        mapaRoles[rol].forEach(modulo => {
+          const badge = document.createElement("span");
+          badge.className = "badge bg-secondary badge-modulo";
+          badge.textContent = modulo;
+          contenedor.appendChild(badge);
+        });
+
+        // Habilitar botón de registrar
+        boton.disabled = false;
+
+      } else {
+        // Mostrar mensaje de error si no hay módulos asociados
+        contenedor.innerHTML = `
+          <div class="alert alert-danger mt-3" role="alert">
+            El rol seleccionado no tiene módulos funcionales asignados.
+            <br>Por favor revise la configuración del sistema o seleccione otro rol.
+          </div>
+        `;
+
+        // Deshabilitar botón de registrar para evitar registros inválidos
+        boton.disabled = true;
+      }
+    }
+  </script>
+</body>
+</html>
