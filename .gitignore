@@ -20,6 +20,12 @@ env/
 *.sql
 *.bak
 
+#Permitir estos archivos
+!database/create_tables_sgpcmd.sql
+!database/foreing_key_sgpcmd.sql
+!database/insert_data_prueba_sgpcmd.sql
+
+
 # 🔄 Cache de Python
 __pycache__/
 *.py[cod]
@@ -74,6 +80,9 @@ docs/**/*.pdf
 docs/**/*.docx
 docs/**/*.xlsx
 docs/**/*.bak
+
+#Permitir estos archivos
+!docs/modelado/Diccionario_sgpcmd.xlsx
 
 # 🖼️ Cache de navegadores o recursos front temporales
 frontend/assets/tmp/
