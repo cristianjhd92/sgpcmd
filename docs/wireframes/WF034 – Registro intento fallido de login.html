@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración base del documento -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WF034 – Registro intento fallido de login</title>
+
+  <!-- Inclusión de Bootstrap 5.3.3 desde CDN oficial -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos internos para personalización visual del wireframe -->
+  <style>
+    /* Contenedor principal con limitación de ancho y sombreado */
+    .bitacora-card {
+      max-width: 900px;
+      margin: 5vh auto;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Estilo tipográfico para campos técnicos (opcional en extensiones futuras) */
+    .log-meta {
+      font-size: 0.9em;
+      color: #6c757d;
+    }
+
+    /* Color personalizado para badges de acceso denegado */
+    .badge-fallo {
+      background-color: #dc3545;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Contenedor general del WF -->
+  <div class="card bitacora-card p-4">
+
+    <!-- Encabezado del wireframe: nombre y código -->
+    <h4 class="text-center text-dark mb-4">
+      WF034 – Registro en bitácora del intento fallido de login
+    </h4>
+
+    <!-- Alerta visual indicando la razón del log generado -->
+    <div class="alert alert-danger text-center" role="alert">
+      Se ha registrado un intento fallido de inicio de sesión debido al estado inválido del usuario.
+    </div>
+
+    <!-- Tabla estructurada que muestra todos los metadatos del evento registrado -->
+    <table class="table table-bordered table-sm">
+      <tbody>
+        <!-- Correo o identificador del usuario que intentó autenticarse -->
+        <tr>
+          <th scope="row">Usuario</th>
+          <td>camilo.gomez@construservicios.com</td>
+        </tr>
+        <!-- Estado en el que se encontraba la cuenta al momento del intento -->
+        <tr>
+          <th scope="row">Estado del usuario</th>
+          <td><span class="badge bg-secondary">Suspendido</span></td>
+        </tr>
+        <!-- Resultado del intento de autenticación (denegado por política de estado) -->
+        <tr>
+          <th scope="row">Resultado</th>
+          <td><span class="badge badge-fallo text-white">Acceso denegado</span></td>
+        </tr>
+        <!-- Dirección IP desde la cual se originó el intento de login -->
+        <tr>
+          <th scope="row">Dirección IP</th>
+          <td>192.168.5.87</td>
+        </tr>
+        <!-- Información del navegador y sistema operativo del usuario -->
+        <tr>
+          <th scope="row">Navegador / Dispositivo</th>
+          <td>Chrome 123 – Windows 11</td>
+        </tr>
+        <!-- Timestamp exacto del evento -->
+        <tr>
+          <th scope="row">Fecha y hora del evento</th>
+          <td>04/06/2025 – 09:14</td>
+        </tr>
+        <!-- Módulo lógico del sistema que generó este evento -->
+        <tr>
+          <th scope="row">Módulo implicado</th>
+          <td>Autenticación de usuarios</td>
+        </tr>
+        <!-- Mensaje específico del backend indicando la causa del bloqueo -->
+        <tr>
+          <th scope="row">Mensaje de error registrado</th>
+          <td>“Acceso denegado: el estado del usuario no permite iniciar sesión.”</td>
+        </tr>
+        <!-- Identificador único del evento para trazabilidad y auditoría -->
+        <tr>
+          <th scope="row">ID del evento (log)</th>
+          <td>EVT-998217</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Botón para retornar al módulo principal de bitácora -->
+    <div class="d-grid mt-3">
+      <button class="btn btn-outline-secondary" type="button">
+        Volver a la bitácora de eventos
+      </button>
+    </div>
+  </div>
+
+  <!-- Pie de página obligatorio con código del WF, nombre del sistema y año -->
+  <footer class="mt-5 text-center text-muted small">
+    WF034 – Registro en bitácora del intento fallido de login | Sistema ConstruserviciosMD – 2025
+  </footer>
+
+  <!-- Bootstrap JS Bundle para interactividad mínima -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
