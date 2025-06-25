@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración del documento -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WF025 – Error por restricciones técnicas o permisos</title>
+
+  <!-- Inclusión de Bootstrap 5 desde CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos personalizados mínimos para presentación del modal -->
+  <style>
+    .form-card {
+      max-width: 700px;
+      margin: auto;
+      margin-top: 5vh;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+    .icono-error {
+      font-size: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Contenedor del contexto de la operación fallida -->
+  <div class="card form-card p-4">
+    <h5 class="text-center mb-4">WF025 – Simulación de error por restricciones</h5>
+    <div class="text-center">
+      <!-- Botón que simula una acción restringida -->
+      <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalErrorRestriccion">
+        Intentar eliminar usuario con restricciones
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal de error que aparece ante intento restringido -->
+  <div class="modal fade" id="modalErrorRestriccion" tabindex="-1" aria-labelledby="modalErrorRestriccionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Encabezado del modal con tono crítico -->
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="modalErrorRestriccionLabel">Acción no permitida</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+
+        <!-- Cuerpo del modal con explicación detallada -->
+        <div class="modal-body text-center">
+
+          <!-- Icono crítico informativo -->
+          <div class="icono-error text-danger mb-3">
+            &#9888;
+          </div>
+
+          <!-- Mensaje dinámico -->
+          <p class="mb-2">
+            No se puede completar esta acción debido a una de las siguientes razones:
+          </p>
+          <ul class="list-group list-group-flush text-start">
+            <li class="list-group-item">El usuario está vinculado a proyectos, tareas o bitácoras activas.</li>
+            <li class="list-group-item">No tiene permisos suficientes para modificar este usuario.</li>
+            <li class="list-group-item">El usuario ya ha sido eliminado o bloqueado permanentemente.</li>
+          </ul>
+          <p class="mt-3 text-muted small">
+            Si necesita realizar esta acción, contacte con el Administrador del sistema o revise las dependencias del usuario.
+          </p>
+        </div>
+
+        <!-- Pie del modal con único botón de cierre -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Entendido</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Pie del wireframe -->
+  <footer class="mt-4 text-center text-muted">
+    WF025 – Error por restricciones | Sistema ConstruserviciosMD – 2025
+  </footer>
+
+  <!-- Bootstrap JS para funcionamiento del modal -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

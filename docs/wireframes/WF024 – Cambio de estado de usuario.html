@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración básica del documento -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WF024 – Cambio de estado de usuario</title>
+
+  <!-- Inclusión de Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos personalizados mínimos -->
+  <style>
+    .form-card {
+      max-width: 800px;
+      margin: 5vh auto;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Contenedor principal del panel de cambio de estado -->
+  <div class="card form-card p-4">
+    <h5 class="text-center mb-4">WF024 – Cambio de estado de usuario</h5>
+
+    <!-- Sección de información básica del usuario -->
+    <div class="mb-3">
+      <label class="form-label">Usuario seleccionado:</label>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Nombre:</strong> Carlos Rodríguez</li>
+        <li class="list-group-item"><strong>Documento:</strong> 123456789</li>
+        <li class="list-group-item"><strong>Correo:</strong> crodriguez@construservicios.com</li>
+        <li class="list-group-item"><strong>Estado actual:</strong> <span class="badge bg-success">Activo</span></li>
+      </ul>
+    </div>
+
+    <!-- Selector de nuevo estado del usuario -->
+    <div class="mb-3">
+      <label for="nuevoEstado" class="form-label">
+        Nuevo estado <span class="text-danger">*</span>
+      </label>
+      <select class="form-select" id="nuevoEstado" onchange="controlarJustificacion()">
+        <option value="">Seleccione una opción</option>
+        <option value="Activo">Activo</option>
+        <option value="Inactivo">Inactivo</option>
+        <option value="Suspendido">Suspendido</option>
+        <option value="Eliminado">Eliminado</option>
+      </select>
+    </div>
+
+    <!-- Campo condicional de justificación -->
+    <div class="mb-3 d-none" id="grupoJustificacion">
+      <label for="justificacion" class="form-label">
+        Justificación del cambio <span class="text-danger">*</span>
+      </label>
+      <textarea class="form-control" id="justificacion" rows="3" placeholder="Describa brevemente la razón del cambio..."></textarea>
+      <div class="form-text">Campo obligatorio al cambiar a “Suspendido” o “Eliminado”.</div>
+    </div>
+
+    <!-- Botón de confirmación -->
+    <div class="d-grid">
+      <button type="button" class="btn btn-primary" onclick="validarCambio()">Confirmar cambio de estado</button>
+    </div>
+
+    <!-- Área de alerta de validación -->
+    <div class="mt-3" id="alertaValidacion"></div>
+  </div>
+
+  <!-- Pie del wireframe -->
+  <footer class="text-center mt-4 text-muted">
+    WF024 – Cambio de estado con justificación | Sistema ConstruserviciosMD – 2025
+  </footer>
+
+  <!-- Script de Bootstrap y lógica del wireframe -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Función que muestra u oculta el campo de justificación
+    function controlarJustificacion() {
+      const estado = document.getElementById("nuevoEstado").value;
+      const justificacionGrupo = document.getElementById("grupoJustificacion");
+
+      // Solo se muestra si se elige “Suspendido” o “Eliminado”
+      if (estado === "Suspendido" || estado === "Eliminado") {
+        justificacionGrupo.classList.remove("d-none");
+      } else {
+        justificacionGrupo.classList.add("d-none");
+      }
+
+      // Limpia alertas previas
+      document.getElementById("alertaValidacion").innerHTML = "";
+    }
+
+    // Función que valida los campos antes de confirmar el cambio de estado
+    function validarCambio() {
+      const estado = document.getElementById("nuevoEstado").value;
+      const justificacion = document.getElementById("justificacion").value.trim();
+      const alerta = document.getElementById("alertaValidacion");
+
+      alerta.innerHTML = ""; // Limpiar alertas anteriores
+
+      if (!estado) {
+        alerta.innerHTML = `<div class="alert alert-danger">Debe seleccionar un nuevo estado.</div>`;
+        return;
+      }
+
+      if ((estado === "Suspendido" || estado === "Eliminado") && justificacion === "") {
+        alerta.innerHTML = `<div class="alert alert-danger">Debe ingresar una justificación para este cambio de estado.</div>`;
+        return;
+      }
+
+      // Confirmación simulada (en la realidad, se conectaría al backend)
+      alerta.innerHTML = `<div class="alert alert-success">Cambio de estado confirmado. El sistema lo registrará en la bitácora.</div>`;
+    }
+  </script>
+</body>
+</html>
