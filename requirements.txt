@@ -1,0 +1,28 @@
+# =============================================
+# SGPCMD – requirements.txt
+# Dependencias oficiales para entorno Python/Flask + MySQL
+# Nivel: intermedio, con foco en aprendizaje, escalabilidad y CI
+# =============================================
+
+# 🔧 Framework principal
+Flask==2.3.3                # Microframework para backend en Python
+
+# 🧱 ORM y conexión a base de datos (MySQL)
+SQLAlchemy==2.0.29          # ORM flexible y ampliamente adoptado
+pymysql==1.1.0              # Driver puro Python para MySQL, fácil de instalar
+
+# 🧪 Testing
+pytest==8.2.0               # Pruebas unitarias y de integración
+coverage==7.5.1             # Medición de cobertura de pruebas
+
+# ✅ Linter y análisis estático
+flake8==7.0.0               # Verificador de estilo y errores Python
+
+# 🔒 Seguridad (opcional para validación básica)
+python-dotenv==1.0.1        # Manejo de variables de entorno .env de forma segura
+
+# 🚀 Despliegue (opcional futuro)
+gunicorn==21.2.0            # WSGI HTTP Server para producción (Railway, etc.)
+
+# 🧰 Herramientas generales
+requests==2.31.0            # Utilidad para realizar peticiones HTTP (si aplica)
