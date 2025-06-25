@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración básica -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WF027 – Vista filtrada de usuarios subordinados</title>
+
+  <!-- Inclusión de Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos mínimos -->
+  <style>
+    .form-card {
+      max-width: 1100px;
+      margin: auto;
+      margin-top: 4vh;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Contenedor principal -->
+  <div class="card form-card p-4">
+    <h5 class="text-center mb-4">WF027 – Vista filtrada de usuarios subordinados con opción de cambio de estado</h5>
+
+    <!-- Selector de cuadrilla o módulo funcional asignado -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <label for="filtroModulo" class="form-label">Filtrar por módulo funcional</label>
+        <select id="filtroModulo" class="form-select">
+          <option selected disabled>Seleccione módulo</option>
+          <option value="calidad">Calidad</option>
+          <option value="sst">Seguridad y Salud en el Trabajo</option>
+          <option value="cronograma">Cronograma</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Tabla con usuarios subordinados -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Nombre completo</th>
+            <th>Documento</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Estado actual</th>
+            <th>Cambiar estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Fila simulada -->
+          <tr>
+            <td>Ana Torres</td>
+            <td>1032498756</td>
+            <td>atorres@construservicios.com</td>
+            <td>Auxiliar SST</td>
+            <td><span class="badge bg-success">Activo</span></td>
+            <td>
+              <!-- Dropdown con opciones de cambio -->
+              <select class="form-select" id="nuevoEstadoAna">
+                <option selected disabled>Seleccione nuevo estado</option>
+                <option value="inactivo">Inactivo</option>
+                <option value="suspendido">Suspendido</option>
+              </select>
+            </td>
+            <td>
+              <!-- Botón para confirmar acción -->
+              <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalJustificacion">
+                Cambiar estado
+              </button>
+            </td>
+          </tr>
+          <!-- Puedes replicar más filas aquí con datos simulados -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal de justificación obligatoria -->
+  <div class="modal fade" id="modalJustificacion" tabindex="-1" aria-labelledby="modalJustificacionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Encabezado -->
+        <div class="modal-header bg-warning text-dark">
+          <h5 class="modal-title" id="modalJustificacionLabel">Justificar cambio de estado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+
+        <!-- Cuerpo -->
+        <div class="modal-body">
+          <p class="mb-2">
+            Por favor, indique el motivo del cambio de estado del usuario:
+          </p>
+          <textarea class="form-control" id="justificacionTexto" rows="3" placeholder="Ingrese justificación obligatoria..."></textarea>
+        </div>
+
+        <!-- Pie -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success">Confirmar cambio</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pie de página -->
+  <footer class="mt-5 text-center text-muted">
+    WF027 – Vista de usuarios subordinados | Sistema ConstruserviciosMD – 2025
+  </footer>
+
+  <!-- Script de Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
