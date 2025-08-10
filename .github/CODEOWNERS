@@ -1,0 +1,11 @@
+# 📘 CODEOWNERS – SGPCMD
+# Definición de responsables por carpeta del repositorio
+
+# Cristian Hernández es el revisor obligatorio de todo el proyecto
+* @cristianjhd92
+
+# Revisores sugeridos (no obligatorios) por área técnica
+/backend/ @Askali123
+/frontend/ @valebohozam
+/tests/ @DiegoRuiz20
+/docs/ @cristianjhd92

@@ -1,0 +1,100 @@
+WF012 – Campo obligatorio de selección de obra.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración básica del documento HTML -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WF013 – Error al intentar registrar sin obra</title>
+
+  <!-- Inclusión de los estilos de Bootstrap 5 desde CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos personalizados mínimos para centrado del formulario -->
+  <style>
+    .form-card {
+      max-width: 900px;           /* Ancho máximo del formulario */
+      margin: auto;               /* Centrado horizontal */
+      margin-top: 4vh;            /* Separación superior */
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);  /* Sombra tenue */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Contenedor principal que simula el formulario con error -->
+  <div class="card form-card p-4">
+    <h5 class="text-center mb-4">WF013 – Error al intentar registrar sin obra</h5>
+
+    <!-- Alerta general que refuerza el error del campo obligatorio -->
+    <div id="alertaObra" class="alert alert-danger d-none" role="alert">
+      El campo "Obra asignada" es obligatorio. Por favor, seleccione una opción válida para continuar.
+    </div>
+
+    <!-- Formulario de ejemplo donde el campo de obra es obligatorio -->
+    <form id="formularioErrorObra">
+
+      <!-- Campo: Obra asignada (obligatorio) -->
+      <div class="mb-3">
+        <label for="obra" class="form-label">
+          Obra asignada <span class="text-danger">*</span>
+        </label>
+
+        <!-- Selector con opción nula inicial. Si no se modifica, se activa el error -->
+        <select class="form-select" id="obra" name="obra" required>
+          <option value="">Seleccione una obra...</option>
+          <option value="101">Proyecto A – Bogotá</option>
+          <option value="102">Proyecto B – Medellín</option>
+        </select>
+
+        <!-- Feedback de error localizado debajo del campo, conforme a Bootstrap 5 -->
+        <div class="invalid-feedback">
+          Este campo es obligatorio. Seleccione una obra válida.
+        </div>
+      </div>
+
+      <!-- Botón de acción principal. Envía el formulario si el campo es válido -->
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Registrar usuario</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Pie de página técnico del wireframe -->
+  <footer class="mt-5 text-center text-muted">
+    WF013 – Validación de obra obligatoria | Sistema ConstruserviciosMD – 2025
+  </footer>
+
+  <!-- Inclusión del bundle de Bootstrap JS para funcionalidad dinámica -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script JavaScript que realiza la validación manual del campo obra -->
+  <script>
+    // Obtención de elementos críticos del DOM
+    const formulario = document.getElementById('formularioErrorObra');
+    const selectObra = document.getElementById('obra');
+    const alertaObra = document.getElementById('alertaObra');
+
+    // Evento que se dispara al intentar enviar el formulario
+    formulario.addEventListener('submit', function(event) {
+      // Si no se ha seleccionado ninguna obra (valor vacío)
+      if (selectObra.value === '') {
+        // Mostrar alerta general en la parte superior del formulario
+        alertaObra.classList.remove('d-none');
+
+        // Aplicar estilo visual de error al campo (borde rojo)
+        selectObra.classList.add('is-invalid');
+
+        // Bloquear el envío del formulario para forzar corrección
+        event.preventDefault();
+      } else {
+        // Si el campo fue corregido, ocultar alerta general
+        alertaObra.classList.add('d-none');
+
+        // Eliminar el estilo de error del campo
+        selectObra.classList.remove('is-invalid');
+      }
+    });
+  </script>
+</body>
+</html>

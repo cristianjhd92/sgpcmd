@@ -1,0 +1,51 @@
+name: CI – SGPCMD (Flask + Python)
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    name: Validación técnica de SGPCMD
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: 🐍 Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 📦 Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt || true
+
+      - name: ⚠️ Validar estructura
+        run: |
+          echo "Validando carpetas base..."
+          test -d backend || echo "::warning::Falta carpeta 'backend'"
+          test -d frontend || echo "::warning::Falta carpeta 'frontend'"
+          test -d database || echo "::warning::Falta carpeta 'database'"
+          test -d docs || echo "::warning::Falta carpeta 'docs'"
+
+      - name: 🧪 Validar sintaxis Python con flake8
+        run: |
+          pip install flake8 || true
+          flake8 backend || echo "::warning::Errores flake8 (no bloquea el build)"
+
+      - name: 🔬 Ejecutar pruebas con pytest (si existen)
+        run: |
+          pip install pytest || true
+          if [ -d tests/unit ]; then pytest tests/unit || echo "::warning::Algunas pruebas fallaron o no existen"; fi
+
+      - name: ✅ Finalizar CI
+        run: echo "CI finalizado: ver detalles arriba"

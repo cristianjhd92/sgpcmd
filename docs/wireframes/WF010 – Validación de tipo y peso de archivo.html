@@ -1,0 +1,95 @@
+WF009 – Campo opcional de carga de firma en formulario.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración básica del documento -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WF010 – Validación de tipo y peso de archivo</title>
+
+  <!-- Inclusión de Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos mínimos para wireframe -->
+  <style>
+    .form-card {
+      max-width: 900px;
+      margin: auto;
+      margin-top: 4vh;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Contenedor principal del formulario -->
+  <div class="card form-card p-4">
+    <h5 class="text-center mb-4">WF010 – Validación por tipo y peso de archivo adjunto</h5>
+
+    <!-- Alerta dinámica que se mostrará en caso de error (oculta inicialmente) -->
+    <div id="alertaFirma" class="alert alert-danger d-none" role="alert">
+      El archivo debe ser JPG, PNG o PDF y no superar los 2MB.
+    </div>
+
+    <!-- Formulario simulado de carga de firma -->
+    <form id="formularioFirma" enctype="multipart/form-data">
+
+      <!-- Campo de carga de archivo con validaciones -->
+      <div class="mb-3">
+        <label for="firma" class="form-label">
+          Firma escaneada o digital (opcional)
+        </label>
+        <input type="file" class="form-control" id="firma" name="firma" accept=".jpg,.png,.pdf">
+        <div class="form-text">
+          Tamaño máximo: 2MB. Tipos permitidos: .jpg, .png, .pdf
+        </div>
+      </div>
+
+      <!-- Botón simulado para enviar el formulario -->
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Simular envío</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Pie de página -->
+  <footer class="mt-5 text-center text-muted">
+    WF010 – Validación tipo y peso | Sistema ConstruserviciosMD – 2025
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Lógica JavaScript para validación de tipo y tamaño -->
+  <script>
+    // Referencias al input y alerta
+    const inputFirma = document.getElementById('firma');
+    const alertaFirma = document.getElementById('alertaFirma');
+
+    // Función que se ejecuta al seleccionar un archivo
+    inputFirma.addEventListener('change', function () {
+      const archivo = this.files[0];
+
+      // Si no se seleccionó archivo, limpiar alerta y salir
+      if (!archivo) {
+        alertaFirma.classList.add('d-none');
+        return;
+      }
+
+      // Definición de tipos válidos
+      const tiposPermitidos = ['image/jpeg', 'image/png', 'application/pdf'];
+      const tamañoMaximo = 2 * 1024 * 1024; // 2MB en bytes
+
+      // Validación de tipo y tamaño
+      if (!tiposPermitidos.includes(archivo.type) || archivo.size > tamañoMaximo) {
+        // Si no cumple, mostrar alerta y limpiar el input
+        alertaFirma.classList.remove('d-none');
+        this.value = ''; // Limpia el campo
+      } else {
+        // Si cumple, ocultar la alerta
+        alertaFirma.classList.add('d-none');
+      }
+    });
+  </script>
+</body>
+</html>

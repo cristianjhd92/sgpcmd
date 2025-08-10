@@ -1,0 +1,102 @@
+WF006 – Panel de cambio de estado con selector desplegable.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración general del documento HTML con soporte para caracteres latinos -->
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WF006 – Panel de cambio de estado de usuario</title>
+
+  <!-- Inclusión del framework Bootstrap 5 desde CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos personalizados para la disposición del componente -->
+  <style>
+    .container-custom {
+      max-width: 1100px; /* Define el ancho máximo del panel principal */
+      margin-top: 5vh;    /* Margen vertical para separación visual */
+    }
+    .estado-badge {
+      font-size: 0.9rem; /* Define tamaño del badge para estados */
+    }
+  </style>
+</head>
+<body>
+
+<!-- Contenedor principal de la vista -->
+<div class="container container-custom">
+  <!-- Título identificador del wireframe -->
+  <h3 class="mb-4 text-center">WF006 – Panel de cambio de estado de usuario</h3>
+
+  <!-- Tabla que lista los usuarios del sistema y permite modificar su estado -->
+  <table class="table table-bordered align-middle">
+    <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Rol</th>
+        <th>Estado actual</th>
+        <th>Nuevo estado</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Primera fila de ejemplo de usuario con estado Activo -->
+      <tr>
+        <td>1024</td>
+        <td>Andrea Gómez</td>
+        <td>andrea.gomez@construservicios.com</td>
+        <td>Residente de Obra</td>
+        <!-- Estado actual visualizado como badge con color semántico -->
+        <td><span class="badge bg-success estado-badge">Activo</span></td>
+        <!-- Selector de nuevo estado -->
+        <td>
+          <select class="form-select form-select-sm">
+            <option selected disabled>Seleccione</option>
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+            <option value="suspendido">Suspendido</option>
+            <option value="eliminado">Eliminado</option>
+          </select>
+        </td>
+        <!-- Botón para confirmar cambio de estado -->
+        <td>
+          <button class="btn btn-sm btn-outline-primary">Confirmar cambio</button>
+        </td>
+      </tr>
+
+      <!-- Segunda fila con un usuario en estado Suspendido -->
+      <tr>
+        <td>1041</td>
+        <td>Luis Rincón</td>
+        <td>luis.rincon@construservicios.com</td>
+        <td>Auditor externo</td>
+        <td><span class="badge bg-warning text-dark estado-badge">Suspendido</span></td>
+        <td>
+          <select class="form-select form-select-sm">
+            <option selected disabled>Seleccione</option>
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+            <option value="suspendido">Suspendido</option>
+            <option value="eliminado">Eliminado</option>
+          </select>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-outline-primary">Confirmar cambio</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pie de página del componente con identificador del sistema -->
+<footer class="mt-5 text-center text-muted">
+  WF006 – Cambio de estado de usuario | Sistema ConstruserviciosMD – 2025
+</footer>
+
+<!-- Inclusión de scripts de Bootstrap para soporte interactivo -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
